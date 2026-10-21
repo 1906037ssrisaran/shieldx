@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: shieldiq-api
+    runtime: python
+    buildCommand: pip install .
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: SHIELDIQ_ENV
+        value: production
+      - key: SHIELDIQ_DEMO_MODE
+        value: "false"
